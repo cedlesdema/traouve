@@ -22,10 +22,13 @@
                 <a class="p-2 text-dark" href="list-lost.html">Objets perdus</a>
                 <a class="p-2 text-dark" href="list-found.html">Objets trouvés</a>
             </nav>
-            <a class="btn btn-outline-primary" href="register.html">
+            <a class="btn btn-outline-primary" href="{{ path('app_login') }}">
                 <i class="fa fa-user-plus"></i>
-                creer compte
-
+                {% if app.user %}
+                {{ app.user.email }}
+                {% else %}
+                Se connecter
+                {% endif %}
             </a>
         </div>
         {% endblock %}
