@@ -1,12 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Bienvenue!{% endblock %}</title>
+        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block header %}
+
+            <div class="fixed-top d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
+            <h5 class="my-0 mr-md-auto font-weight-normal">
+        <span class="fa-stack fa-lg text-primary">
+          <i class="fa fa-square fa-stack-2x"></i>
+          <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+        </span>
+                Traoùvé
+            </h5>
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="p-2 text-dark" href="{{ path('homepage') }}">Accueil</a>
+                <a class="p-2 text-dark" href="{{ path('traobject_new') }}">Déposer une annonce</a>
+                <a class="p-2 text-dark" href="list-lost.html">Objets perdus</a>
+                <a class="p-2 text-dark" href="list-found.html">Objets trouvés</a>
+            </nav>
+            <a class="btn btn-outline-primary" href="register.html">
+                <i class="fa fa-user-plus">
+                    {% if app.user %}
+                        {{ app.user.email }}
+                    {% else %}
+                        Mon Compte
+                    {% endif %}
+                </i>
+
+            </a>
+        </div>
+        {% endblock %}
+
+        <main class="main-content">
+            {% block body %}{% endblock %}
+        </main>
+        {% block footer %}
+            <div class="container">
+                <footer class="pt-4 my-md-5 pt-md-5 border-top">
+                    <div class="row">
+                        <div class="col-12 col-md">
+                            <h5 class="my-0 mr-md-auto font-weight-normal">
+                    <span class="fa-stack fa-lg text-primary">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+                    </span>
+                                Traoùvé
+                            </h5>
+                            <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+                        </div>
+                        <div class="col-6 col-md">
+                            {{ render(controller('App\\Controller\\CategoryController::footerCategory')) }}
+                        </div>
+                        <div class="col-6 col-md">
+                            {{ render(controller('App\\Controller\\CountyController::footerCounty')) }}
+                        </div>
+                        <div class="col-6 col-md">
+                            <h5>Notre entreprise</h5>
+                            <ul class="list-unstyled text-small">
+                                <li><a class="text-muted" href="#">Equipe</a></li>
+                                <li><a class="text-muted" href="#">Contact</a></li>
+                                <li><a class="text-muted" href="#">Mentions légales</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        {% endblock %}
+
+
+
+        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     </body>
 </html>

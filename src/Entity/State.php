@@ -8,10 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
  * State
  *
  * @ORM\Table(name="state")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\StateRepository")
  */
 class State
 {
+    const FOUND = 'Trouvé';
+    const LOST = 'Perdu';
+
     /**
      * @var int
      *
@@ -64,5 +67,8 @@ class State
         return $this;
     }
 
-
+    public function __toString(): string
+    {
+        return $this->getLabel();
+    }
 }
