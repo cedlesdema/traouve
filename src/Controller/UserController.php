@@ -17,7 +17,7 @@ class UserController extends BaseController
 {
     /**
      * @Route("/", name="user_index", methods="GET")
-     * @IsGranted("ROLE_ADMIN)
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(): Response
     {
