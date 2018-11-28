@@ -31,6 +31,32 @@ class TraobjectRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findLastTraobjectByState(string $state, int $limit): array
+    {
+        $qb = $this->createQueryBuilder('t');
+        $qb = $qb
+            ->innerJoin('t.state', 's')
+            ->where($qb->expr()->eq('s.label', ':state'))
+            ->orderBy('t.eventAt', 'DESC')
+            ->setMaxResults($limit);
+        return $qb->setParameter(':state', $state)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findTraobjectByState(string $state): array
+    {
+        $qb = $this->createQueryBuilder('t');
+        $qb = $qb
+            ->innerJoin('t.state', 's')
+            ->where($qb->expr()->eq('s.label', ':state'))
+            ->orderBy('t.eventAt', 'DESC');
+        return $qb->setParameter(':state', $state)
+            ->getQuery()
+            ->getResult();
+    }
+}
     // /**
     //  * @return Traobject[] Returns an array of Traobject objects
     //  */
@@ -59,4 +85,4 @@ class TraobjectRepository extends ServiceEntityRepository
         ;
     }
     */
-}
+

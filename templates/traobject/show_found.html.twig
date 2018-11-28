@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2>Les derniers objets trouvés</h2>
+        <section class="row">
+            {% for traobject in traobjects_found %}
+                {% include 'traobject/card.html.twig' with {'traobject' : traobject} only %}
+            {% endfor %}
+        </section>
+    </div>
+
+{% endblock %}
+
