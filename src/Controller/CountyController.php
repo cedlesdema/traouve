@@ -92,7 +92,7 @@ class CountyController extends BaseController
     }
 
     /**
-     * @Route("/county", name="county")
+     * @Route("/", name="county_index", methods="GET")
      */
     public function footerCounty()
     {

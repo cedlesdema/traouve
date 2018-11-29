@@ -46,8 +46,8 @@ class TraobjectController extends BaseController
         }
         return $this->render('traobject/new.html.twig', [
             'traobject' => $traobject,
-            'formFound' => $form->createView(),
-            'formLost' => $form->createView(),
+            'form' => $form->createView(),
+
         ]);
     }
     /**
@@ -62,6 +62,7 @@ class TraobjectController extends BaseController
      */
     public function edit(Request $request, Traobject $traobject): Response
     {
+        $traobject = new Traobject();
         $form = $this->createForm(TraobjectType::class, $traobject);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

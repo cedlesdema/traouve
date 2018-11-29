@@ -21,12 +21,20 @@
             {{ form_start(form) }}
             {{ form_widget(form) }}
             {{ form_end(form) }}
+
+            {{ include('traobject/_form.html.twig') }}
+
+            <a href="{{ path('traobject_index') }}">retour </a>
         </div>
         <div class="tab-pane fade" id="lost" role="tabpanel" aria-labelledby="lost-tab">
             <h2>J'ai perdu un objet</h2>
             {{ form_start(form) }}
             {{ form_widget(form) }}
             {{ form_end(form) }}
+
+            {{ include('traobject/_form.html.twig') }}
+
+            <a href="{{ path('traobject_index') }}">retour </a>
         </div>
     </div>
 </div>

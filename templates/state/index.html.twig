@@ -3,14 +3,14 @@
 {% block title %}State index{% endblock %}
 
 {% block body %}
-    <h1>State index</h1>
+    <h1>J'ai trouvé un objet</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>description</th>
                 <th>Label</th>
-                <th>Color</th>
+                <th>Couleur</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,11 +27,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4"></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('state_new') }}">Create new</a>
+    <a href="{{ path('state_new') }}">Ajouter</a>
 {% endblock %}

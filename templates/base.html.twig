@@ -23,12 +23,13 @@
             <a class="p-2 text-dark" href="{{ path('show_found') }}">Objets trouvés</a>
         </nav>
 
-        <a class="btn btn-outline-primary" href="{{ path('app_login') }}">
+        <a class="btn btn-outline-primary" href="{{ path('easyadmin') }}">
             <i class="fa fa-user-plus"></i>
             {% if app.user %}
                 {{ app.user.email }}
+
             {% else %}
-                Mon Compte
+                connexion
             {% endif %}
             <span class="caret"></span>
 
