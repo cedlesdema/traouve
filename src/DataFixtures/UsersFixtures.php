@@ -19,6 +19,7 @@ class UsersFixtures extends Fixture
         $admin->setFirstname("ced");
         $admin->setLastname("fulgore");
         $admin->setPassword($this->passwordEncoder->encodePassword($admin, "ceddf"));
+        $admin->setRoles(["ROLE_ADMIN"]);
         $manager->persist($admin);
 
         $faker = Factory::create('fr_FR');
@@ -30,6 +31,7 @@ class UsersFixtures extends Fixture
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);
             $user->setPassword($this->passwordEncoder->encodePassword($user, "pass"));
+            $user->setRoles(["ROLE_USER"]);
             $manager->persist($user);
             $this->addReference('user-' . ($i + 1), $user);
         }
