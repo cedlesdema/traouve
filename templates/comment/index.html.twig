@@ -8,21 +8,22 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Contenu</th>
                 <th>Date de création</th>
-                <th>actions</th>
+                <th>action(s)</th>
             </tr>
         </thead>
         <tbody>
         {% for comment in comments %}
             <tr>
-                <td>{{ comment.id }}</td>
                 <td>{{ comment.content }}</td>
                 <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('comment_show', {'id': comment.id}) }}">afficher</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+
                     <a href="{{ path('comment_edit', {'id': comment.id}) }}">editer</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -34,4 +35,7 @@
     </table>
 
     <a href="{{ path('comment_new') }}">Ajouter un nouvel avis</a>
+    <span>
+        <a href="{{ path('homepage') }}">Retour à l'acceuil</a>
+    </span>
 {% endblock %}

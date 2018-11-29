@@ -3,49 +3,40 @@
 {% block title %}Traobject index{% endblock %}
 
 {% block body %}
-    <h1>Traobject index</h1>
-
+    <h1>Objets</h1>
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Picture</th>
-                <th>Description</th>
-                <th>EventAt</th>
-                <th>DateEnd</th>
-                <th>City</th>
-                <th>Address</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Objet</th>
+            <th>Image</th>
+            <th>Ajouté le</th>
+            <th>Ville</th>
+            <th>Modifié le</th>
+            <th>Action(s)</th>
+        </tr>
         </thead>
         <tbody>
         {% for traobject in traobjects %}
             <tr>
-                <td>{{ traobject.id }}</td>
                 <td>{{ traobject.title }}</td>
-                <td>{{ traobject.picture }}</td>
-                <td>{{ traobject.description }}</td>
-                <td>{{ traobject.eventAt ? traobject.eventAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ traobject.dateEnd ? traobject.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
+                <td><img src="{{ asset('uploads/' ~ traobject.picture) }}" width="80px" alt=""></td>
+                <td>{{ traobject.eventAt ? traobject.eventAt|date('Y-m-d') : '' }}</td>
                 <td>{{ traobject.city }}</td>
-                <td>{{ traobject.address }}</td>
-                <td>{{ traobject.createdAt ? traobject.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ traobject.updatedAt ? traobject.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ traobject.updatedAt ? traobject.createdAt|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('traobject_show', {'id': traobject.id}) }}">show</a>
-                    <a href="{{ path('traobject_edit', {'id': traobject.id}) }}">edit</a>
+                    <a href="{{ path('traobject_show', {'id': traobject.id}) }}">Afficher</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('traobject_edit', {'id': traobject.id}) }}">modifer</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11">Pas d'objets enregistrés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('traobject_new') }}">Create new</a>
+    <a href="{{ path('traobject_new') }}">Ajouter</a>
 {% endblock %}

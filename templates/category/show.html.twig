@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Category{% endblock %}
+
+{% block body %}
+    <h1>CATEGORY</h1>
+
+    <table class="table">
+        <tbody>
+
+        <tr>
+            <th>Objet</th>
+            <td></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('homepage') }}">retour à l'acceuil</a>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('county_edit', {'id': county.id}) }}">Modifier</a>
+        {{ include('county/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

@@ -18,12 +18,14 @@
         </h5>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="{{ path('homepage') }}">Accueil</a>
+            {% if is_granted('ROLE_ADMIN') %}
             <a class="p-2 text-dark" href="{{ path('traobject_new') }}">Déposer une annonce</a>
+            {% endif %}
             <a class="p-2 text-dark" href="{{ path('show_lost') }}">Objets perdus</a>
             <a class="p-2 text-dark" href="{{ path('show_found') }}">Objets trouvés</a>
         </nav>
 
-        <a class="btn btn-outline-primary" href="{{ path('easyadmin') }}">
+        <a class="btn btn-outline-primary" href="{{ path('app_login') }}">
             <i class="fa fa-user-plus"></i>
             {% if app.user %}
                 {{ app.user.email }}
@@ -31,31 +33,7 @@
             {% else %}
                 connexion
             {% endif %}
-            <span class="caret"></span>
-
-            <ul class="dropdown-menu">
-                {% if app.user %}
-                    <li>
-                        <a class="dropdown-item" href="{{ path('app_logout') }}">
-                            <i class="fa fa-sign-in"></i>
-                            Se déconnecter
-                        </a>
-                    </li>
-                {% else %}
-                    <li>
-                        <a class="dropdown-item" href="{{ path('app_login') }}">
-                            <i class="fa fa-sign-in"></i>
-                            Se connecter
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ path('user_registration') }}">
-                            <i class="fa fa-user-plus"></i>
-                            Créer un compte
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
+        </a>
     </div>
 {% endblock %}
 
