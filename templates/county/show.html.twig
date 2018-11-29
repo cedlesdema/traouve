@@ -3,26 +3,27 @@
 {% block title %}County{% endblock %}
 
 {% block body %}
-    <h1>County</h1>
+    <h1>VILLES</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ county.id }}</td>
+                <th>Objets perdus</th>
+                <td>
+                </td>
             </tr>
             <tr>
-                <th>Label</th>
+                <th>Departement</th>
                 <td>{{ county.label }}</td>
             </tr>
             <tr>
-                <th>Zipcode</th>
+                <th>Code Postale</th>
                 <td>{{ county.zipcode }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('county_index') }}">back to list</a>
+    <a href="{{ path('homepage') }}">retour à l'acceuil</a>
 
     <a href="{{ path('county_edit', {'id': county.id}) }}">edit</a>
 

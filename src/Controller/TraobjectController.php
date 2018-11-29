@@ -106,4 +106,6 @@ class TraobjectController extends BaseController
             'traobjects_lost' => $stateLost,
         ]);
     }
+
+
 }
