@@ -22,11 +22,11 @@ class CategoryController extends BaseController
     }
 
     /**
-     * @Route("/{id}", name="category_show", methods="GET")
+     * @Route("/category/{id}", name="category_show", methods="GET")
      */
     public function show(Category $category): Response
     {
-        $category = $this->getDoctrine()->getRepository(Traobject::class)->findBy(["id" => Category::class]);
+        $traobjects = $this->getDoctrine()->getRepository(Traobject::class)->findBy(["category" => $category]);
 
         return $this->render('category/show.html.twig', [
             'category' => $category

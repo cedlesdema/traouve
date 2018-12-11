@@ -16,13 +16,19 @@ class TraobjectController extends BaseController
 {
     /**
      * @Route("/", name="traobject_index", methods="GET")
+     * @param Request $request
+     * @return Response
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $traobjects = $this->getDoctrine()
             ->getRepository(Traobject::class)
             ->findAll();
-        return $this->render('traobject/index.html.twig', ['traobjects' => $traobjects]);
+        if ($request->isXmlHttpRequest()) {
+            return $this->json($traobjects);
+        } else {
+            return $this->render('traobject/index.html.twig', ['traobjects' => $traobjects]);
+        }
     }
     /**
      * @Route("/new", name="traobject_new", methods="GET|POST")
